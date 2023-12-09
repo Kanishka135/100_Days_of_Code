@@ -1,0 +1,24 @@
+Platform-Leetcode
+169. Majority Element
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+       map<int, int> M;
+       int ans;
+       for(int i=0;i<nums.size();i++){
+            if (M.find(nums[i]) == M.end()) {
+                M[nums[i]] = 1;
+       }
+       else {
+            M[nums[i]]++;
+        }
+         for (auto& it : M) {
+        if(it.second > nums.size()/2){
+            ans = it.first;
+          }             
+         }
+       }
+       return ans;
+    }
+};
