@@ -1,0 +1,51 @@
+Platform-Leetcode
+2482.Difference Between Ones and Zeros in Row and Column
+
+class Solution {
+public:
+    vector<vector<int>> onesMinusZeros(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+        vector<int> onesRow;
+        vector<int> onesCol;
+        vector<int> zerosRow;
+        vector<int> zerosCol;
+        for(int i=0; i<m; i++){
+            int oneCount = 0, zeroCount = 0;
+            for(int j=0; j<n; j++){
+                if(grid[i][j] == 1){
+                    oneCount++;
+                }
+                if(grid[i][j] == 0){
+                    zeroCount++;
+                }
+            }
+            onesRow.push_back(oneCount);
+            zerosRow.push_back(zeroCount);
+        }
+
+        for(int i=0; i<n; i++){
+            int oneCount = 0, zeroCount = 0;
+            for(int j=0; j<m; j++){
+                if(grid[j][i] == 1){
+                    oneCount++;
+                }
+                if(grid[j][i] == 0){
+                    zeroCount++;
+                }
+            }
+            onesCol.push_back(oneCount);
+            zerosCol.push_back(zeroCount);
+        }
+
+        vector<vector<int>> diff(m, vector<int>(n, 0));
+
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
+                diff[i][j] = onesRow[i] + onesCol[j] - zerosRow[i] - zerosCol[j];
+            }
+        }
+
+        return diff;
+    }
+};
